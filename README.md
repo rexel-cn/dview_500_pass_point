@@ -3,7 +3,7 @@
 * start
 
 ```bash
-python pass_dview500_point.py -c data\Config_20210513.xlsx  -p 1 -d 1 -t 1
+python pass_dview500_point.py -c data\Config_20210513.xlsx  -p data\prod.xlsx -t data\point.xlsx
 ```
 
 

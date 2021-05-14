@@ -47,7 +47,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Excel transfer')
     parser.add_argument('--config', '-c', help='基础配置文件')
     parser.add_argument('--prod', '-p', help='输出的产品模板')
-    parser.add_argument('--device', '-d', help='输出的设备模板')
     parser.add_argument('--point', '-t', help='输出的点位模板')
     args = parser.parse_args()
     from config import sheet_list
@@ -165,7 +164,10 @@ if __name__ == '__main__':
     print("gl_all_data_kv len = " + str(len(gl_all_data_kv)))
     print("生成产品表")
     print(len(montier_obj))
-    wb1 = load_workbook(filename="data\\prod.xlsx")
+
+    prod_file = args.prod
+    prod_file_out_file_home = str(args.config).replace(".xlsx", "_transfer.xlsx")
+    wb1 = load_workbook(filename=prod_file)
     wss = wb1["产品信息"]
     index = 2
 
@@ -174,9 +176,12 @@ if __name__ == '__main__':
         wss.cell(row=index, column=int(4)).value = str(gl_all_data_kv.get(key)[0]).split("###")[1]
         index = index + 1
 
-    wb1.save(filename="data\\prod_out.xlsx")
+    wb1.save(filename=prod_file_out_file_home)
 
-    wb1 = load_workbook(filename="data\\point.xlsx")
+    point_file = args.point
+    point_file_out_file_home = str(args.config).replace(".xlsx", "_transfer.xlsx")
+
+    wb1 = load_workbook(filename=point_file)
     wss = wb1["point_tag"]
     index = 2
     for key in gl_all_data_kv.keys():
@@ -187,4 +192,4 @@ if __name__ == '__main__':
             wss.cell(row=index, column=int(5)).value = str(m_arry).split("###")[1]
             index = index + 1
 
-    wb1.save(filename="data\\point_out.xlsx")
+    wb1.save(filename=point_file_out_file_home)
