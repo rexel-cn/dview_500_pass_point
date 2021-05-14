@@ -166,7 +166,7 @@ if __name__ == '__main__':
     print(len(montier_obj))
 
     prod_file = args.prod
-    prod_file_out_file_home = str(args.config).replace(".xlsx", "_transfer.xlsx")
+    prod_file_out_file_home = str(prod_file).replace(".xlsx", "_transfer.xlsx")
     wb1 = load_workbook(filename=prod_file)
     wss = wb1["产品信息"]
     index = 2
@@ -179,7 +179,7 @@ if __name__ == '__main__':
     wb1.save(filename=prod_file_out_file_home)
 
     point_file = args.point
-    point_file_out_file_home = str(args.config).replace(".xlsx", "_transfer.xlsx")
+    point_file_out_file_home = str(point_file).replace(".xlsx", "_transfer.xlsx")
 
     wb1 = load_workbook(filename=point_file)
     wss = wb1["point_tag"]
